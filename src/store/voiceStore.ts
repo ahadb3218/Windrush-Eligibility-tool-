@@ -6,6 +6,6 @@ interface VoiceState {
 }
 
 export const useVoiceStore = create<VoiceState>((set) => ({
-  selectedVoice: 'en-GB',
+  selectedVoice: 'en-NG',
   setSelectedVoice: (voice) => set({ selectedVoice: voice }),
 }));
