@@ -35,21 +35,21 @@ export const TopNav = () => {
           <div
             className={`${
               isMenuOpen ? 'flex' : 'hidden'
-            } flex-col lg:flex lg:flex-row lg:items-center lg:space-x-8 space-y-4 lg:space-y-0 mt-4 lg:mt-0`}
+            } flex-col lg:flex lg:flex-row lg:items-center lg:space-x-8 space-y-4 lg:space-y-0 mt-4 lg:mt-0 bg-gray-800 lg:bg-transparent p-4 lg:p-0 rounded-md lg:rounded-none`}
           >
             {navItems.map(({ to, icon: Icon, label }) => (
               <NavLink
                 key={to}
                 to={to}
                 className={({ isActive }) =>
-                  `flex items-center px-3 py-2 text-sm font-medium transition-colors ${
+                  `flex items-center px-3 py-2 text-sm font-medium transition-colors rounded ${
                     isActive
-                      ? 'text-yellow-500'
-                      : 'text-gray-300 hover:text-yellow-500'
+                      ? 'text-yellow-500 bg-gray-700'
+                      : 'text-gray-300 hover:text-yellow-500 hover:bg-gray-700'
                   }`
                 }
               >
-                <Icon className="h-5 w-5 mr-1" />
+                <Icon className="h-5 w-5 mr-2" />
                 {label}
               </NavLink>
             ))}
