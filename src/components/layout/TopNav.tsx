@@ -18,7 +18,9 @@ export const TopNav = () => {
         <div className="flex justify-between items-center h-16">
           {/* Brand Logo */}
           <div className="flex items-center">
-            <span className="text-yellow-500 text-xl font-bold">Windrush Support</span>
+            <NavLink to="/" className="text-yellow-500 text-xl font-bold hover:underline">
+              Windrush Support
+            </NavLink>
           </div>
 
           {/* Mobile Menu Toggle */}
