@@ -18,7 +18,7 @@ export const Home = () => {
         <div className="grid md:grid-cols-2 gap-12 mb-16">
           <div className="rounded-lg overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1529693662653-9d480530a697?auto=format&fit=crop&q=80"
+              src="https://i.ibb.co/TrBF5VB/Screenshot-2024-12-09-010926.png"
               alt="Community Support"
               className="w-full h-[400px] object-cover"
             />
