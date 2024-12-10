@@ -1,7 +1,7 @@
 import { jsPDF } from 'jspdf';
 import { QuizResponse } from '../services/email/types';
 
-export const generatePDF = (result: string, responses: QuizResponse[]) => {
+export const generateAndDownloadPDF = (result: string, responses: QuizResponse[]): void => {
   const doc = new jsPDF();
   
   // Add title

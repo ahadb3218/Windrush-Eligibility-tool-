@@ -6,43 +6,51 @@ class EmailService {
 
   constructor(config: EmailConfig) {
     this.config = config;
-  }
-
-  async sendEmail(to: string, subject: string, content: string): Promise<void> {
-    const templateParams = {
-      to_email: to,
-      subject,
-      content,
-    };
-
-    try {
-      await emailjs.send(
-        this.config.serviceId,
-        this.config.templateId,
-        templateParams,
-        this.config.publicKey
-      );
-    } catch (error) {
-      throw new Error('Failed to send email. Please try again later.');
-    }
+    emailjs.init(this.config.publicKey);
   }
 
   async sendQuizResults(to: string, result: string, responses: string): Promise<void> {
     const templateParams = {
       to_email: to,
-      result,
-      responses,
+      result: result,
+      responses: responses,
+      from_name: 'Liverpool Windrush Support',
+      reply_to: 'liverpoolwindrush@gmail.com',
+      subject: 'Your Windrush Eligibility Assessment Results',
+      message: `
+Dear User,
+
+Thank you for completing the Windrush Eligibility Assessment.
+
+Your Result:
+${result}
+
+Your Responses:
+${responses}
+
+If you have any questions or need further assistance, please don't hesitate to contact us at liverpoolwindrush@gmail.com.
+
+Best regards,
+Liverpool Windrush Support Team
+      `.trim()
     };
 
     try {
-      await emailjs.send(
+      console.log('Sending email to:', to); // Debug log
+      const response = await emailjs.send(
         this.config.serviceId,
         this.config.templateId,
-        templateParams,
-        this.config.publicKey
+        templateParams
       );
+      
+      console.log('Email sent successfully:', response); // Debug log
+      
+      if (response.status !== 200) {
+        throw new Error(`Failed to send email. Status: ${response.status}`);
+      }
     } catch (error) {
-      throw new Error('Failed to send quiz results. Please try again later.');
+      console.error('Email sending error:', error);
+      throw new Error('Failed to send email. Please try again later.');
     }
   }
 }

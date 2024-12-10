@@ -44,7 +44,7 @@ const initialQuestions: Question[] = [
     options: ['Yes', 'No'],
     nextQuestion: {
       'Yes': 'result_eligible',
-      'No': '2'
+      'No': 'result_not_eligible'
     }
   },
   {
@@ -71,7 +71,7 @@ const initialQuestions: Question[] = [
     options: ['Yes', 'No'],
     nextQuestion: {
       'Yes': 'result_eligible',
-      'No': '3'
+      'No': 'result_not_eligible'
     }
   },
   {

@@ -3,7 +3,7 @@ import { FileDown } from 'lucide-react';
 import { EmailResultsForm } from '../email/EmailResultsForm';
 import { Result, UserResponse } from '../../types';
 import { QuizResponse } from '../../services/email/types';
-import { generatePDF } from '../../utils/pdfGenerator';
+import { generateAndDownloadPDF } from '../../utils/pdfGenerator';
 import { useAnalyticsStore } from '../../store/analyticsStore';
 
 interface ResultDisplayProps {
@@ -25,7 +25,7 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
 
   React.useEffect(() => {
     incrementCompletedQuizzes();
-  }, []);
+  }, [incrementCompletedQuizzes]);
 
   const getFormattedResponses = (): QuizResponse[] => {
     return responses.map(response => {
@@ -37,23 +37,10 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
     });
   };
 
-  const handleDownloadPDF = () => {
-    const formattedResponses = getFormattedResponses();
-    generatePDF(result.title, formattedResponses);
-  };
-
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-bold text-yellow-500">{result.title}</h2>
       <p className="text-gray-300 whitespace-pre-line">{result.description}</p>
-      
-      <button
-        onClick={handleDownloadPDF}
-        className="w-full bg-gray-800 text-yellow-500 py-2 px-4 rounded-md hover:bg-gray-700 transition-colors flex items-center justify-center gap-2"
-      >
-        <FileDown className="h-5 w-5" />
-        Download Results as PDF
-      </button>
       
       <EmailResultsForm
         result={result.title}
@@ -68,4 +55,4 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
       </button>
     </div>
   );
-};
+}
