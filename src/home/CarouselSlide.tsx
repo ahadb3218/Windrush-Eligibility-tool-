@@ -1,5 +1,5 @@
 import React from 'react';
-import { Veteran } from '../../data/veterans';
+import { Veteran } from '/home/ahadb3218/Windrush-Eligibility-tool-/src/data/veterans.ts';
 
 interface CarouselSlideProps {
   veteran: Veteran;
